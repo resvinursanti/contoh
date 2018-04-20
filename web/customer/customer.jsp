@@ -213,7 +213,7 @@
                                     <td><%= c.getPekerjaan()%></td>
                                     <td><%= c.getAlamat()%></td>
                                     <td><a href="customerUpdate?id=<%= c.getIdCustomer()%>"><span class="glyphicon glyphicon-edit"></a></span>
-                                        <a href="customerDelete?id=<%= c.getIdCustomer()%>"><span class="glyphicon glyphicon-trash"></a><span</td>
+                                        <a href="customerDelete?id=<%= c.getIdCustomer()%>"  onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></a><span</td>
                                
     </tr> 
                                 <%
@@ -225,13 +225,12 @@
 
                             </table>
                                 <center><button onclick="window.print();"/>PRINT</center> 
+                                
                         </div>
 
                     </div>
             </div>
         </div>
-
-        <!-- /.content -->
 
 
     </body>

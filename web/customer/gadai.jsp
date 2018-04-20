@@ -211,7 +211,7 @@
                                 <td><%= g.getSisa()%></td>
                                 <td><%= g.getStatus()%></td>
                                 <td><a href="gadaiUpdate?id=<%= g.getIdGadai()%>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a href="gadaiDelete?id=<%= g.getIdGadai()%>"><span class="glyphicon glyphicon-trash"></span></a></td>
+                                    <a href="gadaiDelete?id=<%= g.getIdGadai()%>"onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a></td>
                             </tr> 
                             <%
                                 }

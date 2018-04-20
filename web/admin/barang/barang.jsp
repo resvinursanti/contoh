@@ -198,7 +198,7 @@
                             <td><%= c.getNamaBarang()%></td>
                             <td><%= c.getKualitas()%></td>
                             <td><a href="barangUpdate?id=<%= c.getIdBarang()%>"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="barangDelete?id=<%= c.getIdBarang()%>"<span class="glyphicon glyphicon-trash"></span></a></td>
+                            <a href="barangDelete?id=<%= c.getIdBarang()%>"onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr> 
                         <%
                             }
