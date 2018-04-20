@@ -184,5 +184,9 @@ public class Gadai implements Serializable {
     public String toString() {
         return "" + idGadai + "";
     }
+
+    public void setJatuhTempo(String jatuhtempo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

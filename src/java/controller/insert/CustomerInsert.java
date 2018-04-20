@@ -63,7 +63,7 @@ public class CustomerInsert extends HttpServlet {
             out.println(pesan);
             dis = request.getRequestDispatcher("customerController");
             dis.include(request, response);
-        }
+          }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

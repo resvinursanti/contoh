@@ -5,12 +5,21 @@
  */
 package controller.update;
 
+import dao.GadaiDAO;
+import entities.Barang;
+import entities.Customer;
+import entities.Gadai;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -30,20 +39,57 @@ public class ProsesUpdateGadai extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String id = request.getParameter("idGadai");
+        String idcust = request.getParameter("idCustomer");
+        String idbrg = request.getParameter("idBarang");
+        String jmlpinjaman = request.getParameter("jumlahPinjaman");
+        String tglpengajuan = request.getParameter("tanggalPinjaman");
+        String tglditerima = request.getParameter("tanggalDiterima");
+        String jthtempo = request.getParameter("jatuhTempo");
+        String sisa = request.getParameter("sisa");
+        String status = request.getParameter("status");
+        RequestDispatcher dis = null;
+        HttpSession session = request.getSession();
+        GadaiDAO cdao = new GadaiDAO();
+        String pesan="gagal update";
+         Date date1 = null;
+        try {
+          date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglpengajuan);
+        } catch (ParseException ex) {
+            
+        }
+        Date date2 = null;
+        try
+        {
+            date2 = new SimpleDateFormat("yyyy-mm-dd").parse(tglditerima);
+        }catch (ParseException ex) {
+        }
+        Date date3 = null;
+        try{
+            date3 = new SimpleDateFormat("yyyy-mm-dd").parse(jthtempo);
+        }catch (ParseException ex){
+            
+        }
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProsesUpdateGadai</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProsesUpdateGadai at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            Gadai ang = new Gadai(id);
+            ang.setIdCustomer(new Customer(idcust));
+            ang.setIdBarang(new Barang (idbrg));
+            ang.setJumlahPinjaman(Long.parseLong(jmlpinjaman));
+            ang.setTanggalPinjaman(date1);
+            ang.setTanggalDiterima(date2);
+            ang.setJatuhTempo(date3);
+            ang.setSisa(Long.parseLong(sisa));
+            ang.setStatus(status);
+           
+        if(cdao.update(ang)){
+                pesan="ayeeeee"+ang.getIdGadai();
+            }
+            out.println(pesan);
+            dis = request.getRequestDispatcher("gadaiController");
+            dis.include(request, response);
+       
         }
     }
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

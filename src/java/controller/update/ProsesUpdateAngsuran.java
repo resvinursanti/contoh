@@ -5,13 +5,22 @@
  */
 package controller.update;
 
+import dao.AngsuranDAO;
+import entities.Angsuran;
+import entities.Customer;
+import entities.Gadai;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -32,19 +41,38 @@ public class ProsesUpdateAngsuran extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+         String id = request.getParameter("idAngsuran");
+        String idgadai = request.getParameter("idGadai");
+        String idcust = request.getParameter("idCustomer");
+        String tglangsuran = request.getParameter("tanggalAngsuran");
+        String jmlangsuran = request.getParameter("jumlahAngsuran");
+        String denda = request.getParameter("denda");
+        RequestDispatcher dis = null;
+        HttpSession session = request.getSession();
+        AngsuranDAO cdao = new AngsuranDAO();
+        String pesan="gagal update";
+        Date date1 = null;
+        try {
+            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglangsuran);
+        } catch (ParseException ex) {
+            
+        }  
         try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-           out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet ProsesUpdateAngsuran</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet ProsesUpdateAngsuran at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            Angsuran ang = new Angsuran(id);
+            ang.setIdGadai(new Gadai(idgadai));
+            ang.setIdCustomer(new Customer(idcust));
+            ang.setJumlahAngsuran(Long.parseLong(jmlangsuran));
+            ang.setDenda(Long.parseLong(denda));
+            if(cdao.update(ang)){
+                pesan="ayeeeee"+ang.getIdAngsuran();
+            }
+            out.println(pesan);
+            dis = request.getRequestDispatcher("angsuranController");
+            dis.include(request, response);
+       
         }
     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

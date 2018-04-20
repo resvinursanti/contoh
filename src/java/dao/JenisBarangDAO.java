@@ -48,6 +48,6 @@ public class JenisBarangDAO {
         return fdao.getAll("FROM JenisBarang");
     }
      public String getAutoID () {
-        return (String) fdao.getById("SELECT CONCAT('J',LPAD((TO_NUMBER(SUBSTR(MAX(idJenisBarang),3,3))+1),3, '0')) as MAX FROM JenisBarang");
+        return (String) fdao.getById("SELECT CONCAT('j',LPAD((TO_NUMBER(SUBSTR(MAX(idJenisBarang),3,3))+1),3, '0')) as MAX FROM JenisBarang");
     }
 }

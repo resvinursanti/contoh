@@ -1,10 +1,14 @@
 <%-- 
-    Document   : customerupdate
-    Created on : Apr 17, 2018, 9:33:54 PM
-    Author     : TAMU
+Document   : gadaiInsert
+Created on : Apr 20, 2018, 2:21:34 PM
+Author     : Evi
 --%>
 
+<%@page import="entities.Barang"%>
+<%@page import="dao.BarangDAO"%>
 <%@page import="entities.Customer"%>
+<%@page import="dao.CustomerDAO"%>
+<%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -169,77 +173,103 @@
                 <!-- Main content -->
                 <section class="content">
 
-                 
 
-                        <div class="container">
-                            <h2>Form Update Customer</h2>
+
+                    <%
+                        String autoid = (String) session.getAttribute("autoID");
+                    %>
+                    <div class="container">
+                        <h2>Form Insert Gadai</h2>
+                        <form action="gadaiInsert">
+                            <div>
+                                <label>ID Gadai</label>
+                                <%if (autoid.equals("gad")) {
+                                %> <input type="text" name="idGadai" value="<%= autoid%>01" readonly="true"/> <%
+                                } else {
+                                %> <input  type = "text" name = "idGadai" value =
+                                        "<%= autoid%>" readonly="true" class="form-control" style="width:30%"/> <%
+
+                                            }
+                                %>
+                            </div>
+                            <div>
+                                <label>ID Customer</label>
+                                <select name="idCustomer"  class="form-control" style="width:30%">
+                                    <% List<Object> datar = new CustomerDAO().getAll();
+                                        for (Object data : datar) {
+                                            Customer c = (Customer) data;%>
+                                    <option value="<%=c.getIdCustomer()%>"><%=c.getIdCustomer()%>-<%=c.getNamaCustomer()%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+
+                            </div>
+
+                            <div>
+                                <label>ID Barang</label>
+                                <select name="idBarang"  class="form-control" style="width:30%">
+                                    <% List<Object> datars = new BarangDAO().getAll();
+                                        for (Object data : datars) {
+                                            Barang c = (Barang) data;%>
+                                    <option value="<%=c.getIdBarang()%>"><%=c.getNamaBarang()%></option>
+                                    <%
+                                        }
+                                    %>
+                                </select>
+
+                            </div>   
+
+                            <div>
+                                <label>Jumlah Pinjaman</label>
+                                <input type="number" name="jumlahPinjaman" value="" class="form-control" style="width:30%">
+                            </div>
+                          
+                            <div>
+                                <label>Tanggal Pengajuan</label>
+                                <input type="date" name="tanggalPengajuan" value="" class="form-control" style="width:30%">
+                            </div>
+                            <div>
+                                <label>Tanggal diterima</label>
+                                <input type="date" name="tanggalditerima" value="" class="form-control" style="width:30%">
+                            </div>
+                            <div>
+                                <label>Jatuh Tempo</label>
+                                <input type="date" name="jatuhTempo" value="" class="form-control" style="width:30%">
+                            </div>
+                                 <div>
+                                <label>Sisa</label>
+                                <input type="number" name="sisa" value="" class="form-control" style="width:30%">
+                            </div>
+                            <div>
+                                <label>Status</label>
+                                <input type="text" name="status" value="" class="form-control" style="width:30%">
+                            </div>
                             <br>
 
-                            <%
-                                Object datas = (Object) session.getAttribute("customerupdates");
-                                Customer c = (Customer) datas;
-                            %>
-
-
-
-                            <form action="prosesUpdateCustomer">
-
-                                <div>
-                                    <label>ID Customer</label>
-                                    <input type="text" name="idCustomer" class="form-control" style="width:30%" value="<%= c.getIdCustomer()%>" readonly="true">
-                                </div>
-                                <div>
-                                    <label>Nomor KTP</label>
-                                    <input type="text" name="nomorKtp"  class="form-control" style="width:30%" value="<%= c.getNomorKtp()%>">
-                                </div>
-                                <div>
-                                    <label>Nama</label>
-                                    <input type="text" name="nama"  class="form-control" style="width:30%" value="<%= c.getNamaCustomer()%>">
-                                </div>
-                                <div>
-                                    <label>Jenis Kelamin</label>
-                                    <input type="text" name="jenisKelamin"  class="form-control" style="width:30%" value="<%= c.getJenisKelamin()%>">
-                                </div>
-                                <div>
-                                    <label>Password</label>
-                                    <input type="password" name="password"  class="form-control" style="width:30%" value="<%= c.getPassword()%>">
-                                </div>
-                                <div>
-                                    <label>Nomor Telepon</label>
-                                    <input type="text" name="nomorTelepon"  class="form-control" style="width:30%" value="<%= c.getNomorTelepon()%>">
-                                </div>
-                                <div>
-                                    <label>Pekerjaan</label>
-                                    <input type="text" name="pekerjaan"  class="form-control" style="width:30%" value="<%= c.getPekerjaan()%>">
-                                </div>
-                                <div>
-                                    <label>Alamat</label>
-                                    <input type="text" name="alamat"  class="form-control" style="width:30%" value="<%= c.getAlamat()%>">
-                                </div>
-                                <br>
-                                <div>
-                                    <button type="submit" class="btn btn-default" value="Update">Update</button>
-                                </div>
-                                <br>
-                                <br>
-                            </form>
-                        </div>
+                            <div>
+                                <button type="submit"  class="btn btn-default" value="Insert">Insert</button>
+                            </div>
+                        </form>
                     </div>
-                </section>
             </div>
-        
+        </section>
+    </div>
 
-        <script src="bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
-        <!-- Bootstrap 3.3.7 -->
-        <script src="bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-        <!-- SlimScroll -->
-        <script src="bootstrap/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-        <!-- FastClick -->
-        <script src="bootstrap/bower_components/fastclick/lib/fastclick.js"></script>
-        <!-- AdminLTE App -->
-        <script src="bootstrap/dist/js/adminlte.min.js"></script>
-        <!-- AdminLTE for demo purposes -->
-        <script src="bootstrap/dist/js/demo.js"></script>
 
-    </body>
-</html>
+    <br>
+
+    <script src="bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- SlimScroll -->
+    <script src="bootstrap/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="bootstrap/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="bootstrap/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="bootstrap/dist/js/demo.js"></script>
+
+
+</body>

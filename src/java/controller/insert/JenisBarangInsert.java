@@ -6,6 +6,7 @@
 package controller.insert;
 
 import dao.JenisBarangDAO;
+import entities.Barang;
 import entities.JenisBarang;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -37,24 +38,23 @@ public class JenisBarangInsert extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         String id = request.getParameter("idJenisBarang");
-        String nama = request.getParameter("namaJenis");
+        String nmjns = request.getParameter("namaJenis");
         String pesan = "gagal menambah data";
         JenisBarangDAO cdao = new JenisBarangDAO();
         RequestDispatcher dis = null;
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
-            JenisBarang jenisbarang = new JenisBarang(id);
-            jenisbarang.setNamaJenisBarang(nama);
-            if (cdao.insert(jenisbarang)) {
-                pesan = "berhasil menambahkan data" + jenisbarang.getIdJenisBarang();
+            JenisBarang barang = new JenisBarang(id);
+            barang.setNamaJenisBarang(nmjns);
+            if (cdao.insert(barang)) {
+                pesan = "berhasil menambahkan data" + barang.getIdJenisBarang();
             }
-            session.setAttribute("jenisbaranginsert", jenisbarang);
+            session.setAttribute("jenisbaranginsert", barang);
             session.setAttribute("pesan", pesan);
-            out.println(pesan);
             dis = request.getRequestDispatcher("jenisbarangController");
             dis.include(request, response);
+     
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

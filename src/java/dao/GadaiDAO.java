@@ -47,7 +47,7 @@ public class GadaiDAO {
     public List<Object> getAll() {
         return fdao.getAll("FROM Gadai");
     }
-    public String getAutoID(){
-        return (String) fdao.getById("Select MAX(idGadai)+1 from Gadai");
+     public String getAutoID () {
+        return (String) fdao.getById("SELECT CONCAT('gad',LPAD((TO_NUMBER(SUBSTR(MAX(idGadai),4,4))+1),2, '0')) as MAX FROM Gadai");
     }
 }
