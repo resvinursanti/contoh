@@ -40,10 +40,10 @@ public class BarangController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             List<Object> datas = new BarangDAO().getAll();
-            if (session.getAttribute("pesan")!=null) {
-                out.print(session.getAttribute("pesan")+"<br>");
-                session.removeAttribute("pesan");
-            }
+//            if (session.getAttribute("pesan")!=null) {
+//                out.print(session.getAttribute("pesan")+"<br>");
+//                session.removeAttribute("pesan");
+//            }
             session.setAttribute("Barang", datas);
             dispatcher = request.getRequestDispatcher("admin/barang/barang.jsp");
             dispatcher.include(request, response);

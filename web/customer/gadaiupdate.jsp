@@ -17,6 +17,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Gadai Update</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -40,7 +41,7 @@
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -50,7 +51,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b> </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -162,7 +163,21 @@
                         <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                          <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                             <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                             </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -246,8 +261,8 @@
                                 <input type="text" name="sisa" class="form-control" style="width:30%" value="<%= g.getSisa()%>">
                             </div>
                             <div>
-                                <label>Status</label>
-                                <input type="text" name="status" class="form-control" style="width:30%" value="<%= g.getStatus()%>">
+                                <label>Keterangan</label>
+                                <input type="text" name="keterangan" class="form-control" style="width:30%" value="<%= g.getKeterangan()%>">
                             </div>
                             <br>
                             <div>

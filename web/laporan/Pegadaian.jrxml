@@ -1,50 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="1000" pageHeight="842" columnWidth="960" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90b0b118-ba8e-47fd-a4f7-4a711e6fc74e">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="23"/>
+	<property name="ireport.x" value="46"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="id_gadai" class="string">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     LAPORANGSURGADAI."ID_GADAI" AS LAPORANGSURGADAI_ID_GADAI,
-     LAPORANGSURGADAI."Nama" AS LAPORANGSURGADAI_Nama,
-     LAPORANGSURGADAI."Januari" AS LAPORANGSURGADAI_Januari,
-     LAPORANGSURGADAI."Februari" AS LAPORANGSURGADAI_Februari,
-     LAPORANGSURGADAI."Maret" AS LAPORANGSURGADAI_Maret,
-     LAPORANGSURGADAI."April" AS LAPORANGSURGADAI_April,
-     LAPORANGSURGADAI."Mei" AS LAPORANGSURGADAI_Mei,
-     LAPORANGSURGADAI."Juni" AS LAPORANGSURGADAI_Juni,
-     LAPORANGSURGADAI."Juli" AS LAPORANGSURGADAI_Juli,
-     LAPORANGSURGADAI."Agustus" AS LAPORANGSURGADAI_Agustus,
-     LAPORANGSURGADAI."September" AS LAPORANGSURGADAI_September,
-     LAPORANGSURGADAI."Oktober" AS LAPORANGSURGADAI_Oktober,
-     LAPORANGSURGADAI."November" AS LAPORANGSURGADAI_November,
-     LAPORANGSURGADAI."Desember" AS LAPORANGSURGADAI_Desember,
-     LAPORANGSURGADAI."TOTAL" AS LAPORANGSURGADAI_TOTAL,
-     LAPORANGSURGADAI."Sisa" AS LAPORANGSURGADAI_Sisa
+     LAPORANGSURGADAI2."ID_GADAI" AS LAPORANGSURGADAI2_ID_GADAI,
+     LAPORANGSURGADAI2."Nama" AS LAPORANGSURGADAI2_Nama,
+     LAPORANGSURGADAI2."Januari" AS LAPORANGSURGADAI2_Januari,
+     LAPORANGSURGADAI2."Februari" AS LAPORANGSURGADAI2_Februari,
+     LAPORANGSURGADAI2."Maret" AS LAPORANGSURGADAI2_Maret,
+     LAPORANGSURGADAI2."April" AS LAPORANGSURGADAI2_April,
+     LAPORANGSURGADAI2."Mei" AS LAPORANGSURGADAI2_Mei,
+     LAPORANGSURGADAI2."Juni" AS LAPORANGSURGADAI2_Juni,
+     LAPORANGSURGADAI2."Juli" AS LAPORANGSURGADAI2_Juli,
+     LAPORANGSURGADAI2."Agustus" AS LAPORANGSURGADAI2_Agustus,
+     LAPORANGSURGADAI2."September" AS LAPORANGSURGADAI2_September,
+     LAPORANGSURGADAI2."Oktober" AS LAPORANGSURGADAI2_Oktober,
+     LAPORANGSURGADAI2."November" AS LAPORANGSURGADAI2_November,
+     LAPORANGSURGADAI2."Desember" AS LAPORANGSURGADAI2_Desember,
+     LAPORANGSURGADAI2."TOTAL" AS LAPORANGSURGADAI2_TOTAL,
+     LAPORANGSURGADAI2."Sisa" AS LAPORANGSURGADAI2_Sisa
 FROM
-     "HR"."LAPORANGSURGADAI" LAPORANGSURGADAI
-WHERE 
- LAPORANGSURGADAI."ID_GADAI"= $P{idGadai}]]>
+     "HR"."LAPORANGSURGADAI2" LAPORANGSURGADAI2]]>
 	</queryString>
-	<field name="LAPORANGSURGADAI_ID_GADAI" class="java.lang.String"/>
-	<field name="LAPORANGSURGADAI_NAMA" class="java.lang.String"/>
-	<field name="LAPORANGSURGADAI_JANUARI" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_FEBRUARI" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_MARET" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_APRIL" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_MEI" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_JUNI" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_JULI" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_AGUSTUS" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_SEPTEMBER" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_OKTOBER" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_NOVEMBER" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_DESEMBER" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_TOTAL" class="java.math.BigDecimal"/>
-	<field name="LAPORANGSURGADAI_SISA" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_ID_GADAI" class="java.lang.String"/>
+	<field name="LAPORANGSURGADAI2_NAMA" class="java.lang.String"/>
+	<field name="LAPORANGSURGADAI2_JANUARI" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_FEBRUARI" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_MARET" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_APRIL" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_MEI" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_JUNI" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_JULI" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_AGUSTUS" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_SEPTEMBER" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_OKTOBER" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_NOVEMBER" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_DESEMBER" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_TOTAL" class="java.math.BigDecimal"/>
+	<field name="LAPORANGSURGADAI2_SISA" class="java.math.BigDecimal"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -197,82 +195,82 @@ WHERE
 				<textElement verticalAlignment="Middle">
 					<font isStrikeThrough="false"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_ID_GADAI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_ID_GADAI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="44" y="0" width="57" height="20" uuid="f20e9a40-0f3a-4fa9-b05d-d6db5bd8c7d5"/>
 				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_NAMA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_NAMA}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="101" y="0" width="63" height="20" uuid="17174c8f-9f0f-4ea9-a2de-c41ef6234982"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_JANUARI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_JANUARI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="164" y="0" width="68" height="20" uuid="e535225a-2c29-4dbf-a244-1e2a432facda"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_FEBRUARI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_FEBRUARI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="232" y="0" width="64" height="20" uuid="e79a81c8-236f-43fe-b4fb-1edd2f73ca70"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_MARET}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_MARET}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="296" y="0" width="67" height="20" uuid="449f2775-556a-4e16-89e2-3b7a1e29a319"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_APRIL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_APRIL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="363" y="0" width="63" height="20" uuid="34380c03-b418-4ff8-8056-94c2a3fb9295"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_MEI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_MEI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="426" y="0" width="60" height="20" uuid="8e5147ff-f15b-4e83-ae6e-30c7e9eba04b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_JUNI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_JUNI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="486" y="0" width="61" height="20" uuid="db59384e-5a90-4481-a793-df85d6433c69"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_JULI}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_JULI}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="547" y="0" width="69" height="20" uuid="e8500345-8110-44ca-9349-4ccb60abfdbf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_AGUSTUS}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_AGUSTUS}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="616" y="0" width="65" height="20" uuid="c7964013-1658-40ca-abbc-d795a8c89f82"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_SEPTEMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_SEPTEMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="681" y="0" width="61" height="20" uuid="3cd9c3a2-89be-4ba8-942f-91a19fddbb07"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_OKTOBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_OKTOBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="742" y="0" width="64" height="20" uuid="eaf50bca-a137-4443-94ab-f28515ad79b5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_NOVEMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_NOVEMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="806" y="0" width="65" height="20" uuid="9c36fb0a-ba97-4183-93eb-777e83f6d4cb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_DESEMBER}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_DESEMBER}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="871" y="0" width="44" height="20" uuid="2cc9ab72-52d9-4d82-8815-c9b206ba54a5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_TOTAL}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_TOTAL}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="915" y="0" width="44" height="20" uuid="048176ee-c746-4e90-bb19-6712a54f0bc2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI_SISA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{LAPORANGSURGADAI2_SISA}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

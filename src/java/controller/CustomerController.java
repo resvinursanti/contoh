@@ -38,11 +38,11 @@ public class CustomerController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             List<Object> datas = new CustomerDAO().getAll();
-            if (session.getAttribute("pesan")!=null) {
-                out.print(session.getAttribute("pesan")+"<br>");
-                session.removeAttribute("pesan");
-            }
-            session.setAttribute("customerinsert", datas);
+//            if (session.getAttribute("pesan")!=null) {
+//                out.print(session.getAttribute("pesan")+"<br>");
+//                session.removeAttribute("pesan");
+//            }
+            session.setAttribute("customer", datas);
             dispatcher = request.getRequestDispatcher("customer/customer.jsp");
             dispatcher.include(request, response);
             

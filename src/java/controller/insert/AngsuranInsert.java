@@ -49,15 +49,16 @@ public class AngsuranInsert extends HttpServlet {
         String tglangsuran = request.getParameter("tanggalAngsuran");
         String jmlangsuran = request.getParameter("jumlahAngsuran");
         String denda = request.getParameter("denda");
+
         RequestDispatcher dis = null;
         String pesan = "gagal menambah data";
         AngsuranDAO cdao = new AngsuranDAO();
         HttpSession session = request.getSession();
         Date date1 = null;
         try {
-            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglangsuran);
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(tglangsuran);
         } catch (ParseException ex) {
-            
+
         }
         try (PrintWriter out = response.getWriter()) {
             Angsuran ang = new Angsuran(id);
@@ -66,8 +67,9 @@ public class AngsuranInsert extends HttpServlet {
             ang.setTanggalAngsuran(date1);
             ang.setJumlahAngsuran(Long.parseLong(jmlangsuran));
             ang.setDenda(Long.parseLong(denda));
+        
             if (cdao.update(ang)) {
-                pesan = "berhasil menambahkan data" + ang.getIdAngsuran();
+                pesan = "berhasil menambahkan data dengan ID: " + ang.getIdAngsuran();
             }
             session.setAttribute("angsuraninsert", ang);
             session.setAttribute("pesan", pesan);
@@ -75,7 +77,7 @@ public class AngsuranInsert extends HttpServlet {
             dis.include(request, response);
         }
     }
-     
+
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.

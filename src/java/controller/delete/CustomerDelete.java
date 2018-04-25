@@ -39,7 +39,7 @@ public class CustomerDelete extends HttpServlet {
         HttpSession session = request.getSession();
         String pesan = "gagal hapus";
         try (PrintWriter out = response.getWriter()) {
-            if(cdao.delete(id)) pesan="horee" + id + "behasil dihapus";
+            if(cdao.delete(id)) pesan="Data dengan " + id + " behasil dihapus";
             session.setAttribute("pesan", pesan);
             dis=request.getRequestDispatcher("customerController");
             dis.include(request, response);

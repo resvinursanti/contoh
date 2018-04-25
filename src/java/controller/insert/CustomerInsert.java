@@ -56,11 +56,11 @@ public class CustomerInsert extends HttpServlet {
             customer.setPekerjaan(pekerjaan);
             customer.setAlamat(alamat);
             if(cdao.insert(customer)){
-                pesan="berhasil menambahkan data"+customer.getIdCustomer();
+                pesan="berhasil menambahkan data dengan id"+customer.getIdCustomer();
             }
-            session.setAttribute("customerinsert", customer);
+           // session.setAttribute("customerinsert", customer);
             session.setAttribute("pesan", pesan);
-            out.println(pesan);
+            
             dis = request.getRequestDispatcher("customerController");
             dis.include(request, response);
           }

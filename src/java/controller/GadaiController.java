@@ -38,10 +38,10 @@ public class GadaiController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             List<Object> datas = new GadaiDAO().getAll();
-            if (session.getAttribute("pesan")!=null) {
-                out.print(session.getAttribute("pesan")+"<br>");
-                session.removeAttribute("pesan");
-            }
+//            if (session.getAttribute("pesan")!=null) {
+//                out.print(session.getAttribute("pesan")+"<br>");
+//                session.removeAttribute("pesan");
+//            }
             session.setAttribute("gadaii", datas);
             dispatcher = request.getRequestDispatcher("customer/gadai.jsp");
             dispatcher.include(request, response);

@@ -47,26 +47,27 @@ public class ProsesUpdateGadai extends HttpServlet {
         String tglditerima = request.getParameter("tanggalDiterima");
         String jthtempo = request.getParameter("jatuhTempo");
         String sisa = request.getParameter("sisa");
-        String status = request.getParameter("status");
+        String keterangan = request.getParameter("keterangan");
+//        String status = request.getParameter("status");
         RequestDispatcher dis = null;
         HttpSession session = request.getSession();
         GadaiDAO cdao = new GadaiDAO();
-        String pesan="gagal update";
+        String pesanu="gagal update";
          Date date1 = null;
         try {
-          date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglpengajuan);
+          date1 = new SimpleDateFormat("yyyy-MM-dd").parse(tglpengajuan);
         } catch (ParseException ex) {
             
         }
         Date date2 = null;
         try
         {
-            date2 = new SimpleDateFormat("yyyy-mm-dd").parse(tglditerima);
+            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(tglditerima);
         }catch (ParseException ex) {
         }
         Date date3 = null;
         try{
-            date3 = new SimpleDateFormat("yyyy-mm-dd").parse(jthtempo);
+            date3 = new SimpleDateFormat("yyyy-MM-dd").parse(jthtempo);
         }catch (ParseException ex){
             
         }
@@ -79,14 +80,17 @@ public class ProsesUpdateGadai extends HttpServlet {
             ang.setTanggalDiterima(date2);
             ang.setJatuhTempo(date3);
             ang.setSisa(Long.parseLong(sisa));
-            ang.setStatus(status);
-           
+            ang.setKeterangan(keterangan);
+            
+        
         if(cdao.update(ang)){
-                pesan="ayeeeee"+ang.getIdGadai();
+                pesanu="Berhasil mengupdate data ID: "+ang.getIdGadai();
             }
-            out.println(pesan);
+         //   out.println(pesan);
+         session.setAttribute("pesanu",pesanu);
             dis = request.getRequestDispatcher("gadaiController");
             dis.include(request, response);
+         
        
         }
     }

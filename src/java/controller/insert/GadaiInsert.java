@@ -13,7 +13,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -46,29 +48,30 @@ public class GadaiInsert extends HttpServlet {
         String idbrg = request.getParameter("idBarang");
         String jmlpinjaman = request.getParameter("jumlahPinjaman");
         String tglpengajuan = request.getParameter("tanggalPengajuan");
-        String tglditerima = request.getParameter("tanggalditerima");
+//        String tglditerima = request.getParameter("tanggalditerima");
+//        String hitung = request.getParameter("hitung");
         String jthtempo = request.getParameter("jatuhTempo");
-        String sisa = request.getParameter("sisa");
-        String status = request.getParameter("status");
+        String keterangan = request.getParameter("keterangan");
+    
         RequestDispatcher dis = null;
         String pesan = "gagal menambah data";
         GadaiDAO cdao = new GadaiDAO();
         HttpSession session = request.getSession();
         Date date1 = null;
         try {
-            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglpengajuan);
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(tglpengajuan);
         } catch (ParseException ex) {
             
         }
-        Date date2 = null;
-        try
-        {
-            date2 = new SimpleDateFormat("yyyy-mm-dd").parse(tglditerima);
-        }catch (ParseException ex) {
-        }
+//        Date date2 = null;
+//        try
+//        {
+//            date2 = new SimpleDateFormat("yyyy-MM-dd").parse(tglditerima);
+//        }catch (ParseException ex) {
+//        }
         Date date3 = null;
         try{
-            date3 = new SimpleDateFormat("yyyy-mm-dd").parse(jthtempo);
+            date3 = new SimpleDateFormat("yyyy-MM-dd").parse(jthtempo);
         }catch (ParseException ex){
             
         }
@@ -78,12 +81,13 @@ public class GadaiInsert extends HttpServlet {
             ang.setIdBarang(new Barang (idbrg));
             ang.setJumlahPinjaman(Long.parseLong(jmlpinjaman));
             ang.setTanggalPinjaman(date1);
-            ang.setTanggalDiterima(date2);
+//            ang.setTanggalDiterima(date2);
             ang.setJatuhTempo(date3);
-            ang.setSisa(Long.parseLong(sisa));
-            ang.setStatus(status);
+            ang.setSisa(Long.parseLong(jmlpinjaman));
+            ang.setKeterangan(keterangan);
+            
             if (cdao.update(ang)) {
-                pesan = "berhasil menambahkan data" + ang.getIdGadai();
+                pesan = "berhasil menambahkan data dengan ID: " + ang.getIdGadai();
             }
             session.setAttribute("gadaiInsert", ang);
             session.setAttribute("pesan", pesan);

@@ -48,6 +48,6 @@ public class CustomerDAO {
         return fdao.getAll("FROM Customer");
     }
     public String getAutoID () {
-        return (String) fdao.getById("SELECT CONCAT('C',LPAD((TO_NUMBER(SUBSTR(MAX(id_customer),3,3))+1),3, '0')) as MAX FROM Customer");
+        return (String) fdao.getById("SELECT CONCAT('c',LPAD((TO_NUMBER(SUBSTR(MAX(id_customer),3,3))+1),3, '0')) as MAX FROM Customer");
     }
 }

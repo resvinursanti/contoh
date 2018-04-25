@@ -45,7 +45,7 @@ public class ProsesUpdateCustomer extends HttpServlet {
         RequestDispatcher dis = null;
         HttpSession session = request.getSession();
         CustomerDAO cdao = new CustomerDAO();
-        String pesan="gagal update";
+        String pesanu="gagal update";
         try (PrintWriter out = response.getWriter()) {
             Customer customer = (Customer) cdao.getById(idcustomer);
             customer.setNomorKtp(Long.valueOf(nomorktp));
@@ -56,10 +56,11 @@ public class ProsesUpdateCustomer extends HttpServlet {
             customer.setPekerjaan(pekerjaan);
             customer.setAlamat(alamat);
             if(cdao.update(customer)){
-                pesan="ayeeeee"+customer.getIdCustomer();
+                pesanu="Berhasil update ID: "+customer.getIdCustomer();
             }
 //            out.println(idcustomer+","+customer);
-            dis = request.getRequestDispatcher("customer/customer.jsp");
+            session.setAttribute("pesanu",pesanu);
+            dis = request.getRequestDispatcher("customerController");
             dis.include(request, response);
         }
     }

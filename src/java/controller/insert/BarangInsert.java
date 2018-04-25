@@ -51,9 +51,9 @@ public class BarangInsert extends HttpServlet {
             barang.setNamaBarang(nama);
             barang.setKualitas(kualitas);
             if (cdao.insert(barang)) {
-                pesan = "berhasil menambahkan data" + barang.getIdBarang();
+                pesan = "berhasil menambahkan data dengan ID: " +barang.getIdBarang();
             }
-            session.setAttribute("baranginsert", barang);
+         //   session.setAttribute("baranginsert", barang);
             session.setAttribute("pesan", pesan);
             dis = request.getRequestDispatcher("barangController");
             dis.include(request, response);

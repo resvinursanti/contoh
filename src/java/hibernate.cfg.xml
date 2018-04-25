@@ -55,7 +55,7 @@ Contributor(s):
     <mapping class="entities.Angsuran"/>
     <mapping class="entities.Barang"/>
     <mapping class="entities.JenisBarang"/>
-    <mapping class="entities.Gadai"/>
     <mapping class="entities.Customer"/>
+    <mapping class="entities.Gadai"/>
   </session-factory>
 </hibernate-configuration>

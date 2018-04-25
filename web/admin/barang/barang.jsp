@@ -12,10 +12,10 @@
 <html>
 <head>
         <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme Company Page</title>
+        <title>Barang</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -25,7 +25,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -137,7 +137,21 @@
                         <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                         <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                             <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                             </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -152,6 +166,8 @@
                 <!-- Main content -->
                 <section class="content">
                 <div class="box" >
+
+                    
 
                 <div class="box-header">
 
@@ -170,7 +186,24 @@
 
                 <!-- /.box-header -->
 
-                <div class="box-body">
+                  <div class="box-body">
+                           
+                            <%if (session.getAttribute("pesan") != null) { %>
+                                 <div class="alert alert-success">
+                                   <% out.print(session.getAttribute("pesan") + "<br>");
+                                    session.removeAttribute("pesan"); %>
+                                 </div>
+                               <% }%>
+                                
+                               <%if (session.getAttribute("pesanu") != null) { %>
+                                 <div class="alert alert-success">
+                                   <% out.print(session.getAttribute("pesanu") + "<br>");
+                                    session.removeAttribute("pesanu"); %>
+                                 </div>
+                               <% }%>
+                                  
+                                
+                            </div>
 
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
@@ -194,11 +227,11 @@
                         <tr>
                             <td><%= i++%></td>
                             <td><%= c.getIdBarang()%></td>
-                            <td><%= c.getIdJenisBarang()%></td>
+                            <td><%= c.getIdJenisBarang().getNamaJenisBarang() %></td>
                             <td><%= c.getNamaBarang()%></td>
                             <td><%= c.getKualitas()%></td>
-                            <td><a href="barangUpdate?id=<%= c.getIdBarang()%>"><span class="glyphicon glyphicon-edit"></span></a>
-                            <a href="barangDelete?id=<%= c.getIdBarang()%>"onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a></td>
+                            <td><a href="barangUpdate?id=<%= c.getIdBarang()%>" data-toggle="tooltip" title="Update"><span class="glyphicon glyphicon-edit"></span></a>
+                            <a href="barangDelete?id=<%= c.getIdBarang()%>" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a></td>
                         </tr> 
                         <%
                             }

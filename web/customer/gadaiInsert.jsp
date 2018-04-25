@@ -4,6 +4,10 @@ Created on : Apr 20, 2018, 2:21:34 PM
 Author     : Evi
 --%>
 
+<%@page import="java.util.Calendar"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="entities.Barang"%>
 <%@page import="dao.BarangDAO"%>
 <%@page import="entities.Customer"%>
@@ -13,6 +17,7 @@ Author     : Evi
 <!DOCTYPE html>
 <html>
     <head>
+        <title>Gadai Insert</title>
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
         <!-- Bootstrap 3.3.7 -->
         <link rel="stylesheet" href="bootstrap/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -36,7 +41,7 @@ Author     : Evi
         <!-- Google Font -->
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
     </head>
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -46,7 +51,7 @@ Author     : Evi
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b></span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -158,7 +163,21 @@ Author     : Evi
                         <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -177,6 +196,30 @@ Author     : Evi
 
                     <%
                         String autoid = (String) session.getAttribute("autoID");
+                        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                        Date now = new Date();
+                        String tanggalPengajuan = dateFormat.format(now);
+                        String tanggalditerima = dateFormat.format(now);
+                     //   String jatuhtempo = dateFormat.format(now);
+                        Calendar d = Calendar.getInstance();
+                        d.setTime(now);
+                        d.add(Calendar.YEAR, 0);
+                        d.add(Calendar.MONTH, 3);
+                        d.add(Calendar.DATE, 0); //same with c.add(Calendar.DAY_OF_MONTH, 1);
+                        d.add(Calendar.HOUR, 0);
+                        d.add(Calendar.MINUTE, 0);
+                        d.add(Calendar.SECOND, 0);
+                        Date nowPlusOne = d.getTime();
+                        String jatuhtempo = dateFormat.format(nowPlusOne);
+                        
+
+//                        now.setDate(now.getDate()+15);
+//                        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+//                        String formattedDate = sd.format(now);
+//                        vars.put("date", formattedDate);
+
+//                        String hitung = hitung * 86400;
+//                        hasiljumlah = tanggalditerima + hitung
                     %>
                     <div class="container">
                         <h2>Form Insert Gadai</h2>
@@ -184,7 +227,7 @@ Author     : Evi
                             <div>
                                 <label>ID Gadai</label>
                                 <%if (autoid.equals("gad")) {
-                                %> <input type="text" name="idGadai" value="<%= autoid%>01" readonly="true"/> <%
+                                %> <input type="text" name="idGadai"  class="form-control" style="width:30%" value="<%= autoid%>01" readonly="true"/> <%
                                 } else {
                                 %> <input  type = "text" name = "idGadai" value =
                                         "<%= autoid%>" readonly="true" class="form-control" style="width:30%"/> <%
@@ -224,27 +267,26 @@ Author     : Evi
                                 <label>Jumlah Pinjaman</label>
                                 <input type="number" name="jumlahPinjaman" value="" class="form-control" style="width:30%">
                             </div>
-                          
+
                             <div>
                                 <label>Tanggal Pengajuan</label>
-                                <input type="date" name="tanggalPengajuan" value="" class="form-control" style="width:30%">
+                                <input type="date" name="tanggalPengajuan" value="<%= tanggalPengajuan%>" class="form-control" style="width:30%">
                             </div>
-                            <div>
+<!--                            <div>
                                 <label>Tanggal diterima</label>
-                                <input type="date" name="tanggalditerima" value="" class="form-control" style="width:30%">
-                            </div>
+                                <input type="date" name="tanggalditerima" value="<%= tanggalditerima%>"  class="form-control" style="width:30%">
+                            </div>-->
+                           
                             <div>
                                 <label>Jatuh Tempo</label>
-                                <input type="date" name="jatuhTempo" value="" class="form-control" style="width:30%">
-                            </div>
-                                 <div>
-                                <label>Sisa</label>
-                                <input type="number" name="sisa" value="" class="form-control" style="width:30%">
+                                <input type="date" name="jatuhTempo" value="<%= jatuhtempo%>" class="form-control" style="width:30%">
                             </div>
                             <div>
-                                <label>Status</label>
-                                <input type="text" name="status" value="" class="form-control" style="width:30%">
+                                <label>Keterangan</label>
+                                <input type="text" name="keterangan" value="" class="form-control" style="width:30%">
                             </div>
+
+
                             <br>
 
                             <div>

@@ -50,10 +50,10 @@ public class ProsesUpdateAngsuran extends HttpServlet {
         RequestDispatcher dis = null;
         HttpSession session = request.getSession();
         AngsuranDAO cdao = new AngsuranDAO();
-        String pesan="gagal update";
+        String pesanu="gagal update";
         Date date1 = null;
         try {
-            date1 = new SimpleDateFormat("yyyy-mm-dd").parse(tglangsuran);
+            date1 = new SimpleDateFormat("yyyy-MM-dd").parse(tglangsuran);
         } catch (ParseException ex) {
             
         }  
@@ -64,9 +64,10 @@ public class ProsesUpdateAngsuran extends HttpServlet {
             ang.setJumlahAngsuran(Long.parseLong(jmlangsuran));
             ang.setDenda(Long.parseLong(denda));
             if(cdao.update(ang)){
-                pesan="ayeeeee"+ang.getIdAngsuran();
+                pesanu="Berhasil mengupdate data dengan ID: "+ang.getIdAngsuran();
             }
-            out.println(pesan);
+           
+            session.setAttribute("pesanu",pesanu);
             dis = request.getRequestDispatcher("angsuranController");
             dis.include(request, response);
        

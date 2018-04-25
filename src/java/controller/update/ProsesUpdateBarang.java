@@ -44,16 +44,17 @@ public class ProsesUpdateBarang extends HttpServlet {
         RequestDispatcher dis = null;
         HttpSession session = request.getSession();
         BarangDAO cdao = new BarangDAO();
-        String pesan="gagal update";
+        String pesanu="gagal update";
         try (PrintWriter out = response.getWriter()) {
             Barang barang = new Barang(id);
             barang.setIdJenisBarang(new JenisBarang(idjns));
             barang.setNamaBarang(nama);
             barang.setKualitas(kualitas);       
             if(cdao.update(barang)){
-                pesan="ayeeeee"+barang.getIdBarang();
+                pesanu="Berhasil mengupdate data dengan ID: "+barang.getIdBarang();
             }
-            out.println(pesan);
+            session.setAttribute("pesanu",pesanu);
+           // out.println(pesan);
             dis = request.getRequestDispatcher("barangController");
             dis.include(request, response);
        

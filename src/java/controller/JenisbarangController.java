@@ -41,10 +41,10 @@ public class JenisbarangController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             List<Object> datas = new JenisBarangDAO().getAll();
-            if (session.getAttribute("pesan")!=null) {
-                out.print(session.getAttribute("pesan")+"<br>");
-                session.removeAttribute("pesan");
-            }
+//            if (session.getAttribute("pesan")!=null) {
+//                out.print(session.getAttribute("pesan")+"<br>");
+//                session.removeAttribute("pesan");
+//            }
             session.setAttribute("JenisBarang", datas);
             dispatcher = request.getRequestDispatcher("admin/jenisbarang/jenisbarang.jsp");
             dispatcher.include(request, response);

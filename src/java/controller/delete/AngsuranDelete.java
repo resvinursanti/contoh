@@ -42,10 +42,10 @@ public class AngsuranDelete extends HttpServlet {
         String pesan = "gagal hapus";
         try (PrintWriter out = response.getWriter()) {
             if (cdao.delete(id)) {
-                pesan = "horee" + id + "behasil dihapus";
+                pesan = "Data dengan " + id + " behasil dihapus";
             }
             session.setAttribute("pesan", pesan);
-            dis = request.getRequestDispatcher("barangController");
+            dis = request.getRequestDispatcher("angsuranController");
             dis.include(request, response);
         }
     }

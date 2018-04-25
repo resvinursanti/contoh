@@ -1,14 +1,17 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : parametercust
+    Created on : Apr 24, 2018, 10:27:04 PM
+    Author     : Evi
+--%>
 
-    <title>Bootstrap Theme Company Page</title>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<html>
+
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Gadai</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-   
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme Company Page</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -18,7 +21,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b> </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -123,44 +126,64 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
-                       
-                        <li><a href="admindashboard.html"><i class="fa fa-circle"></i>Dashboard</a></li>
+
+                        <li><a href=#><i class="fa fa-circle"></i>Dashboard</a></li>
                         <li><a href="customerController"><i class="fa fa-user"></i>Data Customer</a></li>
                         <li><a href="barangController"><i class="fa fa-file-o"></i>Data Barang</a></li>
-                        <li><a href="jenisBarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
+                        <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
 
-                <!-- /.content -->
-            </div>
-            <!-- /.content-wrapper -->
+            <!-- =============================================== -->
 
-            <footer class="main-footer">
-                <div class="pull-right hidden-xs">
-                    <b>Version</b> 2.4.0
-                </div>
-                <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-                reserved.
-            </footer>
+            <!-- Content Wrapper. Contains page content -->
+            <div class="content-wrapper">
+                <!-- Content Header (Page header) -->
 
-            <!-- ./wrapper -->
+                <!-- Main content -->
+                <section class="content">       
+                    <!-- Content Header (Page header) -->
 
-            <!-- jQuery 3 -->
-            <script src="bootstrap/bower_components/jquery/dist/jquery.min.js"></script>
-            <!-- Bootstrap 3.3.7 -->
-            <script src="bootstrap/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-            <!-- SlimScroll -->
-            <script src="bootstrap/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-            <!-- FastClick -->
-            <script src=bootstrap/bower_components/fastclick/lib/fastclick.js"></script>
-            <!-- AdminLTE App -->
-            <script src="bootstrap/dist/js/adminlte.min.js"></script>
-            <!-- AdminLTE for demo purposes -->
-            <script src="bootstrap/dist/js/demo.js"></script>
+                    <div class="box" >
+
+                        <div class="box-header">
+
+                            <h3 class="box-title">
+                                Data Gadai </h3>
+
+                        </div>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body>
+      <h3>Laporan Berdasarkan ID Customer</h3>
+      <form action="customerlaporan.jsp">
+        <input type="text" name="idCustomer" value="" /> <input type="submit" class="btn-sm btn-primary" value="Show Report"/>
+        <hr/>
+    </form>
+    
+    
+    <br>
     </body>
 </html>

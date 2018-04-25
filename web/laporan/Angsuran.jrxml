@@ -3,35 +3,40 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="id_gadai" class="java.lang.String">
+	<parameter name="idGadai" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
 		<![CDATA[SELECT
-     ANGSURANGADAI."ID_ANGSURAN" AS ANGSURANGADAI_ID_ANGSURAN,
-     ANGSURANGADAI."ID_GADAI" AS ANGSURANGADAI_ID_GADAI,
-     ANGSURANGADAI."ID_CUST" AS ANGSURANGADAI_ID_CUST,
-     ANGSURANGADAI."TGL_ANGSUR" AS ANGSURANGADAI_TGL_ANGSUR,
-     ANGSURANGADAI."JML_ANGSUR" AS ANGSURANGADAI_JML_ANGSUR,
-     ANGSURANGADAI."DENDA" AS ANGSURANGADAI_DENDA,
-     GADAI."JML_PINJAMAN" AS GADAI_JML_PINJAMAN,
+     ANGSURAN."ID_ANGSURAN" AS ANGSURAN_ID_ANGSURAN,
+     ANGSURAN."ID_GADAI" AS ANGSURAN_ID_GADAI,
+     ANGSURAN."ID_CUSTOMER" AS ANGSURAN_ID_CUSTOMER,
+     ANGSURAN."TANGGAL_ANGSURAN" AS ANGSURAN_TANGGAL_ANGSURAN,
+     ANGSURAN."JUMLAH_ANGSURAN" AS ANGSURAN_JUMLAH_ANGSURAN,
+     ANGSURAN."DENDA" AS ANGSURAN_DENDA,
+     GADAI."JUMLAH_PINJAMAN" AS GADAI_JUMLAH_PINJAMAN,
      GADAI."ID_GADAI" AS GADAI_ID_GADAI,
-     GADAI."TGL_PENGAJUAN" AS GADAI_TGL_PENGAJUAN,
-     GADAI."SISA" AS GADAI_SISA
+     GADAI."TANGGAL_PINJAMAN" AS GADAI_TANGGAL_PINJAMAN,
+     GADAI."SISA" AS GADAI_SISA,
+     CUSTOMER."NAMA_CUSTOMER" AS CUSTOMER_NAMA_CUSTOMER
 FROM
-     "HR"."GADAI" GADAI INNER JOIN "HR"."ANGSURANGADAI" ANGSURANGADAI ON GADAI."ID_GADAI" = ANGSURANGADAI."ID_GADAI"
-WHERE ANGSURANGADAI."ID_GADAI" = $P{id_gadai}]]>
+     "HR"."GADAI" GADAI INNER JOIN "HR"."ANGSURAN" ANGSURAN ON GADAI."ID_GADAI" = ANGSURAN."ID_GADAI"
+     INNER JOIN "HR"."CUSTOMER" CUSTOMER ON ANGSURAN."ID_CUSTOMER" = CUSTOMER."ID_CUSTOMER"
+     AND CUSTOMER."ID_CUSTOMER" = GADAI."ID_CUSTOMER"
+WHERE
+     ANGSURAN."ID_GADAI" = $P{idGadai}]]>
 	</queryString>
-	<field name="ANGSURANGADAI_ID_ANGSURAN" class="java.lang.String"/>
-	<field name="ANGSURANGADAI_ID_GADAI" class="java.lang.String"/>
-	<field name="ANGSURANGADAI_ID_CUST" class="java.lang.String"/>
-	<field name="ANGSURANGADAI_TGL_ANGSUR" class="java.sql.Timestamp"/>
-	<field name="ANGSURANGADAI_JML_ANGSUR" class="java.math.BigDecimal"/>
-	<field name="ANGSURANGADAI_DENDA" class="java.math.BigDecimal"/>
-	<field name="GADAI_JML_PINJAMAN" class="java.math.BigDecimal"/>
+	<field name="ANGSURAN_ID_ANGSURAN" class="java.lang.String"/>
+	<field name="ANGSURAN_ID_GADAI" class="java.lang.String"/>
+	<field name="ANGSURAN_ID_CUSTOMER" class="java.lang.String"/>
+	<field name="ANGSURAN_TANGGAL_ANGSURAN" class="java.sql.Timestamp"/>
+	<field name="ANGSURAN_JUMLAH_ANGSURAN" class="java.math.BigDecimal"/>
+	<field name="ANGSURAN_DENDA" class="java.math.BigDecimal"/>
+	<field name="GADAI_JUMLAH_PINJAMAN" class="java.math.BigDecimal"/>
 	<field name="GADAI_ID_GADAI" class="java.lang.String"/>
-	<field name="GADAI_TGL_PENGAJUAN" class="java.sql.Timestamp"/>
+	<field name="GADAI_TANGGAL_PINJAMAN" class="java.sql.Timestamp"/>
 	<field name="GADAI_SISA" class="java.math.BigDecimal"/>
+	<field name="CUSTOMER_NAMA_CUSTOMER" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -47,45 +52,45 @@ WHERE ANGSURANGADAI."ID_GADAI" = $P{id_gadai}]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="156" splitType="Stretch">
+		<band height="96" splitType="Stretch">
 			<textField>
-				<reportElement x="513" y="95" width="147" height="20" uuid="763a3b7e-469e-4787-a167-a8ab7caf5068"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="513" y="48" width="147" height="20" uuid="763a3b7e-469e-4787-a167-a8ab7caf5068"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{GADAI_JML_PINJAMAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{GADAI_JUMLAH_PINJAMAN}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="513" y="75" width="147" height="20" uuid="5364badf-4cb5-4c11-8941-46b5055f487e"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="514" y="28" width="147" height="20" uuid="5364badf-4cb5-4c11-8941-46b5055f487e"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{GADAI_TGL_PENGAJUAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{GADAI_TANGGAL_PINJAMAN}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="358" y="95" width="153" height="20" uuid="5c505f76-b266-4ba8-9dd9-fa167a74197d"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="409" y="48" width="103" height="20" uuid="5c505f76-b266-4ba8-9dd9-fa167a74197d"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Jumlah Pinjaman	]]></text>
+				<text><![CDATA[ Jumlah Pinjaman              :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="75" width="153" height="20" uuid="d014dff7-f512-4c86-b05d-a52a69b3e1b0"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="409" y="28" width="103" height="20" uuid="d014dff7-f512-4c86-b05d-a52a69b3e1b0"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Tanggal Pengajuan Gadai	]]></text>
+				<text><![CDATA[Tanggal Pengajuan Gadai  : ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="115" width="153" height="20" uuid="481cba01-ab50-43ff-9409-ff7f301c8f6f"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="409" y="68" width="103" height="20" uuid="481cba01-ab50-43ff-9409-ff7f301c8f6f"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[Sisa Pinjaman]]></text>
+				<text><![CDATA[Sisa Pinjaman                    :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="511" y="115" width="149" height="20" uuid="26be76b1-3bde-4cab-aef1-8f1b694f64ac"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="514" y="68" width="146" height="20" uuid="26be76b1-3bde-4cab-aef1-8f1b694f64ac"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{GADAI_SISA}]]></textFieldExpression>
@@ -98,33 +103,47 @@ WHERE ANGSURANGADAI."ID_GADAI" = $P{id_gadai}]]>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="358" y="35" width="153" height="20" uuid="86c593b8-4ffd-44d7-972e-78d71325f12d"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="6" y="28" width="78" height="20" uuid="86c593b8-4ffd-44d7-972e-78d71325f12d"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[ID Gadai]]></text>
+				<text><![CDATA[ID Gadai 	              :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="515" y="35" width="145" height="20" uuid="165efc26-4695-49c2-a4e3-a310e19a91cb"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="85" y="48" width="147" height="20" uuid="07d616e6-5848-44ca-83ec-1335eab258f7"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_ID_GADAI}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="513" y="55" width="147" height="20" uuid="07d616e6-5848-44ca-83ec-1335eab258f7"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
-					<font size="8"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_ID_CUST}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_ID_CUSTOMER}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="358" y="55" width="153" height="20" uuid="25a747be-e2de-4e4a-847c-3126a73199c4"/>
-				<textElement textAlignment="Right" verticalAlignment="Middle">
+				<reportElement x="6" y="48" width="78" height="20" uuid="25a747be-e2de-4e4a-847c-3126a73199c4"/>
+				<textElement verticalAlignment="Middle">
 					<font size="8"/>
 				</textElement>
-				<text><![CDATA[ID Cust]]></text>
+				<text><![CDATA[ ID Customer           :]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="85" y="28" width="147" height="20" uuid="dd54b484-14f5-49d2-ab53-a204c4da0110"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_ID_GADAI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="6" y="68" width="78" height="20" uuid="dfd7a447-52ce-4052-9b93-159fafd8fab1"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[Nama Customer      :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="85" y="68" width="147" height="20" uuid="4b1a2f17-63af-4b70-aef9-dfa7bd152fca"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CUSTOMER_NAMA_CUSTOMER}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -164,22 +183,22 @@ WHERE ANGSURANGADAI."ID_GADAI" = $P{id_gadai}]]>
 			<textField>
 				<reportElement x="7" y="0" width="142" height="20" uuid="161d8103-a595-43b6-845a-161f236db04c"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_ID_ANGSURAN}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_ID_ANGSURAN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="149" y="0" width="180" height="20" uuid="7c408d3b-7074-40e6-a8d7-adecf00dbdda"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_TGL_ANGSUR}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_TANGGAL_ANGSURAN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="329" y="0" width="182" height="20" uuid="33293d79-2899-4335-b232-70fe3b117a7a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_JML_ANGSUR}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_JUMLAH_ANGSURAN}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="513" y="0" width="147" height="20" uuid="703c775d-ab0a-479e-b6c8-c8924f5628af"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ANGSURANGADAI_DENDA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ANGSURAN_DENDA}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

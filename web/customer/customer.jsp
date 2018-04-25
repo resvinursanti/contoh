@@ -12,10 +12,10 @@
 <html>
     <head>
         <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme Company Page</title>
+        <title>Customer</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -25,7 +25,8 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b> 
+                    </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -130,20 +131,35 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
-                       
+
                         <li><a href=#><i class="fa fa-circle"></i>Dashboard</a></li>
                         <li><a href="customerController"><i class="fa fa-user"></i>Data Customer</a></li>
                         <li><a href="barangController"><i class="fa fa-file-o"></i>Data Barang</a></li>
                         <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
             </aside>
 
             <!-- =============================================== -->
+
 
             <!-- Content Wrapper. Contains page content -->
             <div class="content-wrapper">
@@ -167,6 +183,13 @@
                                 Data Customer</h2>
 
                         </div>
+
+                        <br>
+                        <form action="laporan/customerlaporan.jsp">
+                            <input type="text" name="idCustomer" value=""  data-toggle="tooltip" title="Berdasarkan ID Customer"/> 
+                            <input type="submit" class="btn-sm btn-default" style="color: green" value="Show Report"/>
+                            <hr/>
+                        </form>
                         <br>
                         <div class="text-right" style="padding-right: 10px">
                             <a href="customerAutoID" class="btn btn-sm btn-warning">Tambah Customer<i class="fa fa-arrow-circle-right"></i></a>
@@ -178,60 +201,74 @@
 
                         <div class="box-body">
 
-                            <table id="example1" class="table table-bordered table-striped">
-                                <thead>
-                                    <tr>
-                                        <th>NO</th>
-                                        <th>ID CUSTOMER</th>
-                                        <th>NOMOR KTP</th>
-                                        <th>NAMA CUSTOMER</th>
-                                        <th>JENIS KELAMIN</th>
-                                        <th>PASSWORD</th>
-                                        <th>NOMOR TELEPON</th>
-                                        <th>PEKERJAAN</th>
-                                        <th>ALAMAT</th>
-                                        <th>AKSI</th>
-                                    </tr>
-                                </thead>
+                            <%if (session.getAttribute("pesan") != null) { %>
+                            <div class="alert alert-success">
+                                <% out.print(session.getAttribute("pesan") + "<br>");
+                                       session.removeAttribute("pesan"); %>
+                            </div>
+                            <% }%>
 
-                                <%
-                                    List<Object> datas = new CustomerDAO().getAll();
-                                    //  List<Object> datas = (List<Object>) session.getAttribute("Customerrr");
-                                    int i = 1;
-                                    for (Object data : datas) {
-                                        Customer c = (Customer) data;
-                                %>
-
-                                <tr>
-                                    <td><%= i++%></td>
-                                    <td><%= c.getIdCustomer()%></td>
-                                    <td><%= c.getNomorKtp()%></td>
-                                    <td><%= c.getNamaCustomer()%></td>
-                                    <td><%= c.getJenisKelamin()%></td>
-                                    <td><%= c.getPassword()%></td>
-                                    <td><%= c.getNomorTelepon()%></td>
-                                    <td><%= c.getPekerjaan()%></td>
-                                    <td><%= c.getAlamat()%></td>
-                                    <td><a href="customerUpdate?id=<%= c.getIdCustomer()%>"><span class="glyphicon glyphicon-edit"></a></span>
-                                        <a href="customerDelete?id=<%= c.getIdCustomer()%>"  onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></a><span</td>
-                               
-    </tr> 
-                                <%
-                                    }
-                                %>
+                            <%if (session.getAttribute("pesanu") != null) { %>
+                            <div class="alert alert-success">
+                                <% out.print(session.getAttribute("pesanu") + "<br>");
+                                       session.removeAttribute("pesanu"); %>
+                            </div>
+                            <% }%>
 
 
-
-
-                            </table>
-                                <center><button onclick="window.print();"/>PRINT</center> 
-                                
                         </div>
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>NO</th>
+                                    <th>ID CUSTOMER</th>
+                                    <th>NOMOR KTP</th>
+                                    <th>NAMA CUSTOMER</th>
+                                    <th>JENIS KELAMIN</th>
+                                    <th>PASSWORD</th>
+                                    <th>NOMOR TELEPON</th>
+                                    <th>PEKERJAAN</th>
+                                    <th>ALAMAT</th>
+                                    <th>AKSI</th>
+                                </tr>
+                            </thead>
+
+                            <%
+                                List<Object> datas = new CustomerDAO().getAll();
+                                //  List<Object> datas = (List<Object>) session.getAttribute("Customerrr");
+                                int i = 1;
+                                for (Object data : datas) {
+                                    Customer c = (Customer) data;
+                            %>
+
+                            <tr>
+                                <td><%= i++%></td>
+                                <td><%= c.getIdCustomer()%></td>
+                                <td><%= c.getNomorKtp()%></td>
+                                <td><%= c.getNamaCustomer()%></td>
+                                <td><%= c.getJenisKelamin()%></td>
+                                <td><%= c.getPassword()%></td>
+                                <td><%= c.getNomorTelepon()%></td>
+                                <td><%= c.getPekerjaan()%></td>
+                                <td><%= c.getAlamat()%></td>
+                                <td><a href="customerUpdate?id=<%= c.getIdCustomer()%>" data-toggle="tooltip" title="Update"><span class="glyphicon glyphicon-edit"></a></span>
+                                    <a href="customerDelete?id=<%= c.getIdCustomer()%>" data-toggle="tooltip" title="Delete" onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></a><span</td>
+
+                            </tr> 
+                            <%
+                                }
+                            %>
+
+
+
+
+                        </table>
+
 
                     </div>
+
             </div>
         </div>
-
-
-    </body>
+    </div>
+</body>
 </html>

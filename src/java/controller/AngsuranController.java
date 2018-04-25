@@ -40,10 +40,10 @@ public class AngsuranController extends HttpServlet {
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
             List<Object> datas = new AngsuranDAO().getAll();
-            if (session.getAttribute("pesan")!=null) {
-                out.print(session.getAttribute("pesan")+"<br>");
-                session.removeAttribute("pesan");
-            }
+//            if (session.getAttribute("pesan")!=null) {
+//                out.print(session.getAttribute("pesan")+"<br>");
+//                session.removeAttribute("pesan");
+//            }
             session.setAttribute("Angsuran", datas);
             dispatcher = request.getRequestDispatcher("admin/angsuran/angsuran.jsp");
             dispatcher.include(request, response);

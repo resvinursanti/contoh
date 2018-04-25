@@ -39,9 +39,14 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Gadai.findByTanggalPinjaman", query = "SELECT g FROM Gadai g WHERE g.tanggalPinjaman = :tanggalPinjaman")
     , @NamedQuery(name = "Gadai.findByJatuhTempo", query = "SELECT g FROM Gadai g WHERE g.jatuhTempo = :jatuhTempo")
     , @NamedQuery(name = "Gadai.findBySisa", query = "SELECT g FROM Gadai g WHERE g.sisa = :sisa")
-    , @NamedQuery(name = "Gadai.findByTanggalDiterima", query = "SELECT g FROM Gadai g WHERE g.tanggalDiterima = :tanggalDiterima")
-    , @NamedQuery(name = "Gadai.findByStatus", query = "SELECT g FROM Gadai g WHERE g.status = :status")})
+    , @NamedQuery(name = "Gadai.findByTanggalDiterima", query = "SELECT g FROM Gadai g WHERE g.tanggalDiterima = :tanggalDiterima")})
+//    , @NamedQuery(name = "Gadai.findByStatus", query = "SELECT g FROM Gadai g WHERE g.status = :status")})
 public class Gadai implements Serializable {
+
+    @Column(name = "STATUS")
+    private String status;
+    @Column(name = "KETERANGAN")
+    private String keterangan;
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -61,8 +66,8 @@ public class Gadai implements Serializable {
     @Column(name = "TANGGAL_DITERIMA")
     @Temporal(TemporalType.TIMESTAMP)
     private Date tanggalDiterima;
-    @Column(name = "STATUS")
-    private String status;
+//    @Column(name = "STATUS")
+//    private String status;
     @JoinColumn(name = "ID_BARANG", referencedColumnName = "ID_BARANG")
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Barang idBarang;
@@ -127,13 +132,13 @@ public class Gadai implements Serializable {
         this.tanggalDiterima = tanggalDiterima;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+//    public String getStatus() {
+//        return status;
+//    }
+//
+//    public void setStatus(String status) {
+//        this.status = status;
+//    }
 
     public Barang getIdBarang() {
         return idBarang;
@@ -187,6 +192,22 @@ public class Gadai implements Serializable {
 
     public void setJatuhTempo(String jatuhtempo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getKeterangan() {
+        return keterangan;
+    }
+
+    public void setKeterangan(String keterangan) {
+        this.keterangan = keterangan;
     }
     
 }

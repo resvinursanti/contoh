@@ -39,7 +39,7 @@ public class GadaiDelete extends HttpServlet {
         String pesan ="gagal menghapus pesan";
         HttpSession session = request.getSession();
         try (PrintWriter out = response.getWriter()) {
-           if(gdao.delete(id)) pesan="Horeee"+id+"berhasil dihapus";
+           if(gdao.delete(id)) pesan="Data dengan ID "+id+" berhasil dihapus";
            session.setAttribute("pesan", pesan);
            dis=request.getRequestDispatcher("gadaiController");
            dis.include(request, response);

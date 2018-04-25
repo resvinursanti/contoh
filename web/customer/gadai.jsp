@@ -4,18 +4,22 @@
     Author     : TAMU
 --%>
 
+<%@page import="dao.BarangDAO"%>
+<%@page import="entities.Barang"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.text.DateFormat"%>
 <%@page import="dao.GadaiDAO"%>
 <%@page import="entities.Gadai"%>
 <%@page import="java.util.List"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    
-        <!-- Theme Made By www.w3schools.com - No Copyright -->
-        <title>Bootstrap Theme Company Page</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-    <body class="hold-transition skin-blue fixed sidebar-mini">
+
+    <!-- Theme Made By www.w3schools.com - No Copyright -->
+    <title>Gadai</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <body class="hold-transition skin-green fixed sidebar-mini">
         <!-- Site wrapper -->
         <div class="wrapper">
 
@@ -25,7 +29,7 @@
                     <!-- mini logo for sidebar mini 50x50 pixels -->
                     <span class="logo-mini"><b>A</b>LT</span>
                     <!-- logo for regular state and mobile devices -->
-                    <span class="logo-lg"><b>Pegadaian</b> Admin</span>
+                    <span class="logo-lg"><b>Pegadaian</b> </span>
                 </a>
                 <!-- Header Navbar: style can be found in header.less -->
                 <nav class="navbar navbar-static-top">
@@ -130,14 +134,28 @@
                     <!-- /.search form -->
                     <!-- sidebar menu: : style can be found in sidebar.less -->
                     <ul class="sidebar-menu" data-widget="tree">
-                       
+
                         <li><a href=#><i class="fa fa-circle"></i>Dashboard</a></li>
                         <li><a href="customerController"><i class="fa fa-user"></i>Data Customer</a></li>
                         <li><a href="barangController"><i class="fa fa-file-o"></i>Data Barang</a></li>
                         <li><a href="jenisbarangController"><i class="fa fa-file-o"></i>Data Jenis Barang</a></li>
                         <li><a href="gadaiController"><i class="fa fa-file-o"></i>Data Gadai Barang</a></li>
                         <li><a href="angsuranController"><i class="fa fa-money"></i>Data Angsuran </a></li>
-
+                        <li class="treeview">
+                            <a href="#">
+                                <i class="fa fa-file-archive-o"></i> <span>Laporan</span>
+                                <span class="pull-right-container">
+                                    <i class="fa fa-angle-left pull-right"></i>
+                                </span>
+                            </a>
+                            <ul class="treeview-menu">
+                                <li><a href="laporan/laporanparameter.jsp"><i class="fa fa-file"></i> Laporan dengan ID Gadai</a></li>
+                                <li><a href="laporan/angsuran.jsp"><i class="fa fa-file"></i> Laporan Angsuran Perbulan</a></li>
+                                <li><a href="laporan/parametercust.jsp"><i class="fa fa-file"></i> Laporan Gadai Customer</a></li>
+                               <li><a href="laporan/parameterperiode.jsp"><i class="fa fa-file"></i> Laporan Angsuran Per-Periode</a></li>
+                           
+                            </ul>
+                        </li>
                     </ul>
                 </section>
                 <!-- /.sidebar -->
@@ -153,74 +171,113 @@
                 <section class="content">       
                     <!-- Content Header (Page header) -->
 
-            <div class="box" >
+                    <div class="box" >
 
-                <div class="box-header">
+                        <div class="box-header">
 
-                    <h3 class="box-title">
-                       Data Gadai </h3>
-
-                </div>
-
-                <br>
-                        <div class="text-right" style="padding-right: 10px">
-                            <a href="gadaiAutoID" class="btn btn-sm btn-warning">Tambah Gadai<i class="fa fa-arrow-circle-right"></i></a>
+                            <h3 class="box-title">
+                                Data Gadai </h3>
 
                         </div>
+                     
+
                         <br>
-                <!-- /.box-header -->
+                        <div class="text-right" style="padding-right: 10px">
+                            <a href="gadaiAutoID" class="btn btn-sm btn-warning">Tambah Gadai<i class="fa fa-arrow-circle-right"></i></a>
+                        </div>
+                       
+                        <br>
+                        <!-- /.box-header -->
 
-                <div class="box-body">
+                        <div class="box-body">
 
-                    <table id="example1" class="table table-bordered table-striped">
-                        <thead>
-     
-                            <tr>
-                                <th>NO</th>
-                                <th>ID GADAI</th>
-                                <th>ID CUSTOMER</th>
-                                <th>ID BARANG</th>
-                                <th>JUMLAH PINJAMAN</th>
-                                <th>TANGGAL PENGAJUAN</th>
-                                <th>TANGGAL DITERIMA</th>
-                                <th>JATUH TEMPO</th>
-                                <th>SISA</th>
-                                <th>STATUS</th>
-                                <th>AKSI</th>
-                            </tr>
-                        </thead>
-                   
+                            <%if (session.getAttribute("pesan") != null) { %>
+                            <div class="alert alert-success">
+                                <% out.print(session.getAttribute("pesan") + "<br>");
+                                    session.removeAttribute("pesan"); %>
+                            </div>
+                            <% }%>
 
-                            <%
-                                List<Object> data2 = new GadaiDAO().getAll();
-                                // List<Object> datas = (List<Object>) session.getAttribute("gadaii");
-                                int j = 1;
-                                for (Object data : data2) {
-                                    Gadai g = (Gadai) data;
-                            %>
+                            <%if (session.getAttribute("pesanu") != null) { %>
+                            <div class="alert alert-success">
+                                <% out.print(session.getAttribute("pesanu") + "<br>");
+                                    session.removeAttribute("pesanu"); %>
+                            </div>
+                            <% }%>
 
-                            <tr>
-                                <td><%= j++%></td>
-                                <td><%= g.getIdGadai()%></td>
-                                <td><%= g.getIdCustomer()%></td>
-                                <td><%= g.getIdBarang()%></td>
-                                <td><%= g.getJumlahPinjaman()%></td>
-                                <td><%= g.getTanggalPinjaman()%></td>
-                                <td><%= g.getTanggalDiterima()%>
-                                <td><%= g.getJatuhTempo()%></td>
-                                <td><%= g.getSisa()%></td>
-                                <td><%= g.getStatus()%></td>
-                                <td><a href="gadaiUpdate?id=<%= g.getIdGadai()%>"><span class="glyphicon glyphicon-edit"></span></a>
-                                    <a href="gadaiDelete?id=<%= g.getIdGadai()%>"onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a></td>
-                            </tr> 
-                            <%
-                                }
-                            %>
-                      
-                    </table>
-                </div>
+                            <table id="example1" class="table table-bordered table-striped">
+                                <thead>
+
+                                    <tr>
+                                        <th>NO</th>
+                                        <th>ID GADAI</th>
+                                        <th>ID CUSTOMER</th>
+                                        <th>ID BARANG</th>
+                                        <th>JUMLAH PINJAMAN</th>
+                                        <th>TANGGAL PENGAJUAN</th>
+                                        <!--<th>TANGGAL DITERIMA</th>-->
+                                        <th>JATUH TEMPO</th>
+                                        <th>SISA</th>
+                                        <th>KETERANGAN</th>
+                                        <th>STATUS</th>
+                                        
+
+
+                                        <th>AKSI</th>
+                                    </tr>
+                                </thead>
+
+
+                                <%
+                                    List<Object> data2 = new GadaiDAO().getAll();
+                                    // List<Object> datas = (List<Object>) session.getAttribute("gadaii");
+                                    int j = 1;
+                                    for (Object data : data2) {
+                                        Gadai g = (Gadai) data;
+                                        DateFormat dateformat = new SimpleDateFormat("dd-MM-yyyy");
+                                        String tanggalPinjaman = dateformat.format(g.getTanggalPinjaman());
+//                                        String tanggalDiterima = dateformat.format(g.getTanggalDiterima());
+                                        String jatuhTempo = dateformat.format(g.getJatuhTempo());
+                                        
+                                %>
+                                
+                                
+
+                                <tr>
+                                    <td><%= j++%></td>
+                                    <td><%= g.getIdGadai()%></td>
+                                    <td><%= g.getIdCustomer()%>-<%= g.getIdCustomer().getNamaCustomer()%></td>
+                                    <td><%= g.getIdBarang().getNamaBarang() %></td>
+                                    <td><%= g.getJumlahPinjaman()%></td>
+                                    <td><%= tanggalPinjaman %></td>
+                                    <!--<td> tanggalDiterima </td>-->
+                                    <td><%= jatuhTempo %></td>
+                                    <td><%= g.getSisa()%></td>
+                                    <td><%= g.getKeterangan()%></td>
+                                    <% if (g.getSisa() == 0) {
+
+                                    %> <td>Lunas</td>
+
+                                    <%} else {
+
+                                    %> <td>Belum Lunas</td>
+
+                                    <% }
+                                    %>
+                                    
+
+
+                                    <td> <a href="gadaiDelete?id=<%= g.getIdGadai()%>" data-toggle="tooltip" title="Hapus" onclick="return confirm('Apakah yakin akan menghapus data?')"><span class="glyphicon glyphicon-trash"></span></a>
+                                    </td>
+                                </tr> 
+                                <%
+                                    }
+                                %>
+
+                            </table>
+                        </div>
+                    </div>
             </div>
-        </div>
         </div>
     </body>
 </html>
